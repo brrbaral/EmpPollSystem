@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if request.role == 'Admin'%}
+        {% load crispy_forms_tags %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-md-4">
+                {{ user_form|crispy }}
+
+                <button type="submit" class="btn btn-primary" value="submit">submit</button>
+            </div>
+        </form>
+    {% elif request.role == 'HR' %}
+        {% load crispy_forms_tags %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-md-4">
+                {{ user_form|crispy }}
+
+                <button type="submit" class="btn btn-primary" value="submit">submit</button>
+            </div>
+        </form>
+    {% else %}
+        <p>You are not authorized for this Action!</p>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Poll</title>
+</head>
+<body>
+{% block content %}
+    <br/>
+    <form method="post">
+        {% csrf_token %}
+        {{ poll_form|crispy }}
+        {% for form in choice_forms %}
+        {{ form|crispy}}
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Edit Poll</button>
+
+
+    </form>
+
+{% endblock content %}
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-md-6">
+
+    <h5>These are all {{ title }}</h5>
+    {% if questions %}
+        <ul>
+        {% for question in questions %}
+
+            <li class="list-group-item"><a href="{% url 'details' question.id %}">{{ question.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no questions</p>
+    {% endif %}
+    <a class="btn btn-warning float-right" href="{% url 'poll_add' %}">Add New Poll</a>
+    </div>
+    <br/>
+{% endblock content %}

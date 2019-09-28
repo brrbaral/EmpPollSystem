@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load poll_extras %}
+{% block content %}
+    <div class="row">
+    <div class="col-md-6 float-left">
+        <p>
+        <div class="float-left"><h2>List of Employees</h2></div>
+        <a class="btn btn-success float-right" href="{% url 'employee_add' %}">Add Employee</a>
+        </p>
+        <br/>
+        <br/>
+        {% if employees %}
+                <ul class="list-group">
+                    {% for employee in employees %}
+
+                        <li class="list-group-item text-primary" data-toggle="collapse" data-target="#demo" >{{employee.first_name}}</li>
+                        <div id="demo" class="collapse">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-primary btn-sm" href="{% url 'employee_detail' employee.id %}">Details</a>&nbsp;
+                                <a class="btn btn-outline-warning btn-sm" href="{% url 'employee_edit' employee.id %}">Edit</a>&nbsp;
+                                <a class="btn btn-danger btn-sm" href="{% url 'employee_delete' employee.id %}">Delete</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>There are no employees</p>
+            {% endif %}
+
+    </div>
+    <div class="col-md-5 float-right">
+    {% recent_polls as questions %}
+        <p><h3>Recent polls</h3></p>
+    {% if questions %}
+        <ul class="list-group">
+        {% for question in questions %}
+
+            <li class="list-group-item"><a href="{% url 'details' question.id %}">{{ question.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no questions</p>
+    {% endif %}
+    </div>
+    </div>
+{% endblock content %}

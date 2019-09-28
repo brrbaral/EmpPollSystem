@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logout</title>
+</head>
+<body>
+{% block content %}
+    You've been logged out of the system<br/>
+    Plese <a href="{% url 'login' %}">login</a> again
+{% endblock content %}
+
+</body>
+</html>

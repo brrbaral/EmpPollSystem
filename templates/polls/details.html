@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Detail Page</h3>
+    <p> <h2>{{ question.title }}</h2></p>
+    <div class="list-group col-md-4" onclick="window.location='{% url 'poll_details' question.id %}';" style="cursor: pointer;">
+        {% for choice in question.choices %}
+            <ul class="list-group-item text-primary" href="">
+                <span class="badge badge-pill badge-primary float-right">{{ choice.votes }}</span>
+                {{ choice.text }}
+            </ul>
+        {% empty %}
+            <p>There is no choice available for this question</p>
+        {% endfor %}
+    </div>
+    <div>
+    <br/>
+        <p>
+            <a class="btn btn-warning" href="{% url 'poll_edit' question.id %}">Edit</a>
+             <a class="btn btn-danger" href="{% url 'poll_delete' question.id %}">Delete</a>
+
+        </p>
+
+    </div>
+
+    <div><p>Poll is Created by:{{ question.created_by.first_name }}</p></div>
+{% endblock content %}
+
+<!--  17  5:40 -->

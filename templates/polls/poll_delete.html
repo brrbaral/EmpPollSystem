@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Poll</title>
+</head>
+<body>
+{% block content %}
+    <div>
+
+        <h4 class="text-danger">Are you sure want to delete ?</h4><br/>
+        <h4>{{ question.title }}</h4>
+        <br/>
+        <form action="" method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger" value="Delete" type="submit">Delete</button>
+            <a class="btn btn-warning" href="{% url 'details' question.id %}">Cancel</a>
+        </form>
+
+    </div>
+{% endblock content %}
+</body>
+</html>
